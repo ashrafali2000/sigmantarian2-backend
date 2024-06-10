@@ -7,7 +7,6 @@ const disCordBotUserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // comments: [{ type: Schema.Types.ObjectId, ref: "disCordBotComment" }],
   },
   { timestamps: true }
 );
@@ -31,3 +30,5 @@ export const DisCordBotComment = mongoose.model(
   "DisCordBotComment",
   disCordBotCommentSchema
 );
+
+// comments: [{ type: Schema.Types.ObjectId, ref: "disCordBotComment" }],
