@@ -5,7 +5,7 @@ import userRoutes from "./routes/user.js";
 import cors from "cors";
 import { Client, GatewayIntentBits } from "discord.js";
 import { DisCordBotComment, DiscordBotUser } from "./models/discordBord.js";
-// import { validUser } from "./utils/services.js";
+import { validUser } from "./utils/services.js";
 dotenv.config();
 
 const DbPassword = process.env.USER_PASSWORD;
@@ -38,21 +38,24 @@ const client = new Client({
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.content) {
-    // const result = validUser(message.author.username);
-    // if (!result) {
-    //   return;
-    // } else {
-    // }
-    const newUser = new DiscordBotUser({
-      // _id: new mongoose.Types.ObjectId(),
-      userName: message.author.username,
-    });
-    await newUser.save();
-    const newComments = new DisCordBotComment({
-      author: newUser._id,
-      message: message.content,
-    });
-    await newComments.save();
+    const result = await validUser(message.author.username);
+    if (!result) {
+      const newUser = new DiscordBotUser({
+        userName: message.author.username,
+      });
+      await newUser.save();
+      const newComments = new DisCordBotComment({
+        author: newUser._id,
+        message: message.content,
+      });
+      await newComments.save();
+    } else {
+      const newComments = new DisCordBotComment({
+        author: result._id,
+        message: message.content,
+      });
+      await newComments.save();
+    }
   }
 });
 client.login(SecretToken);
