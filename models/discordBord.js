@@ -7,7 +7,7 @@ const disCordBotUserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    comments: [{ type: Schema.Types.ObjectId, ref: "disCordBotComment" }],
+    // comments: [{ type: Schema.Types.ObjectId, ref: "disCordBotComment" }],
   },
   { timestamps: true }
 );
