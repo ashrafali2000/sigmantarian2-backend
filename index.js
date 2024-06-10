@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.js";
 import cors from "cors";
 import { Client, GatewayIntentBits } from "discord.js";
 import { DisCordBotComment, DiscordBotUser } from "./models/discordBord.js";
+// import { validUser } from "./utils/services.js";
 dotenv.config();
 
 const DbPassword = process.env.USER_PASSWORD;
@@ -37,8 +38,13 @@ const client = new Client({
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.content) {
+    // const result = validUser(message.author.username);
+    // if (!result) {
+    //   return;
+    // } else {
+    // }
     const newUser = new DiscordBotUser({
-      _id: new mongoose.Types.ObjectId(),
+      // _id: new mongoose.Types.ObjectId(),
       userName: message.author.username,
     });
     await newUser.save();

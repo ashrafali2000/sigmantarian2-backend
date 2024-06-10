@@ -2,7 +2,7 @@ import { mongoose } from "mongoose";
 const { Schema } = mongoose;
 const disCordBotUserSchema = new mongoose.Schema(
   {
-    _id: Schema.Types.ObjectId,
+    // _id: Schema.Types.ObjectId,
     userName: {
       type: String,
       required: true,
