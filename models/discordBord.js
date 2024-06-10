@@ -6,6 +6,7 @@ const disCordBotUserSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   { timestamps: true }
