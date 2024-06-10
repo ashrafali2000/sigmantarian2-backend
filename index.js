@@ -24,9 +24,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(5001, () => {
-  console.log("Server is running on Port 3000");
-});
 // Discord code
 const client = new Client({
   intents: [
@@ -35,10 +32,12 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
 });
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.content) {
     const result = await validUser(message.author.username);
+    console.log("result--------->", result);
     if (!result) {
       const newUser = new DiscordBotUser({
         userName: message.author.username,
@@ -59,9 +58,10 @@ client.on("messageCreate", async (message) => {
   }
 });
 client.login(SecretToken);
-
 // end Code discord code
-
+app.listen(5001, () => {
+  console.log("Server is running on Port 3000");
+});
 app.use("/user", userRoutes);
 
 app.get("/", function (req, res) {
