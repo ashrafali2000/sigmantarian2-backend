@@ -37,7 +37,6 @@ client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.content) {
     const result = await validUser(message.author.username);
-    console.log("result--------->", result);
     if (!result) {
       const newUser = new DiscordBotUser({
         userName: message.author.username,
