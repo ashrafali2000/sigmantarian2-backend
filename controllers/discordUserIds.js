@@ -15,7 +15,7 @@ export const createUserWithId = async (req, res, next) => {
     res.status(403).json("User exist");
   }
 };
-export const getUserWithId = async (req, res, next) => {
+export const getUserWithIds = async (req, res, next) => {
   const userWithId = new DiscardUserId.fined();
   res.status(200).json(userWithId);
 };
