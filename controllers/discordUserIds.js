@@ -16,6 +16,6 @@ export const createUserWithId = async (req, res, next) => {
   }
 };
 export const getUserWithIds = async (req, res, next) => {
-  const userWithId = new DiscardUserId.find();
+  const userWithId = new DiscardUserId.find({});
   res.status(200).json(userWithId);
 };
