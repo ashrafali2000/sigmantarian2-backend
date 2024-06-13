@@ -2,11 +2,12 @@ import { DiscardUserId } from "../models/discordUserIds.js";
 import { oldUser } from "../utils/services.js";
 
 export const createUserWithId = async (req, res, next) => {
-  const { userId } = req.body;
+  const { userId, contractId } = req.body;
   const result = await oldUser(userId);
   if (!result) {
     const newUserWithId = new DiscardUserId({
       userId,
+      contractId,
     });
     await newUserWithId.save();
     res.status(200).json(newUserWithId);
@@ -15,9 +16,6 @@ export const createUserWithId = async (req, res, next) => {
   }
 };
 export const getUserWithId = async (req, res, next) => {
-  const { userId } = req.body;
-  const userWithId = new DiscardUserId.finedOne({
-    userId,
-  });
+  const userWithId = new DiscardUserId.fined();
   res.status(200).json(userWithId);
 };

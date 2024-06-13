@@ -6,6 +6,10 @@ const discordUserIdSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    contractId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
