@@ -1,5 +1,4 @@
 import { DiscardUserId } from "../models/discordUserIds";
-import { errorHandler } from "../utils/error";
 
 export const createUserWithId = async (req, res, next) => {
   const { userId } = req.body;
@@ -9,9 +8,9 @@ export const createUserWithId = async (req, res, next) => {
       userId,
     });
     await newUserWithId.save();
-    res.status(200).send(newUserWithId);
+    res.status(200).json(newUserWithId);
   } else {
-    res.send(errorHandler(403, "User exist"));
+    res.status(403).json("User exist");
   }
 };
 export const getUserWithId = async (req, res, next) => {
@@ -19,5 +18,5 @@ export const getUserWithId = async (req, res, next) => {
   const userWithId = new DiscardUserId.finedOne({
     userId,
   });
-  res.status(200).send(userWithId);
+  res.status(200).json(userWithId);
 };
