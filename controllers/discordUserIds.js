@@ -1,5 +1,5 @@
-import { DiscardUserId } from "../models/discordUserIds";
-import { oldUser } from "../utils/services";
+import { DiscardUserId } from "../models/discordUserIds.js";
+import { oldUser } from "../utils/services.js";
 
 export const createUserWithId = async (req, res, next) => {
   const { userId } = req.body;
