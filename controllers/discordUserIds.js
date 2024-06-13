@@ -1,9 +1,10 @@
 import { DiscardUserId } from "../models/discordUserIds";
+import { oldUser } from "../utils/services";
 
 export const createUserWithId = async (req, res, next) => {
   const { userId } = req.body;
-  const oldUser = await oldUser(userId);
-  if (!oldUser) {
+  const result = await oldUser(userId);
+  if (!result) {
     const newUserWithId = new DiscardUserId({
       userId,
     });
