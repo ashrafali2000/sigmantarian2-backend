@@ -16,6 +16,10 @@ export const createUserWithId = async (req, res, next) => {
   }
 };
 export const getUserWithIds = async (req, res, next) => {
-  const userWithId = await DiscardUserId.find();
-  res.status(200).json(userWithId);
+  try {
+    const userWithId = await DiscardUserId.find();
+    res.status(200).json(userWithId);
+  } catch (error) {
+    next(error.message);
+  }
 };
